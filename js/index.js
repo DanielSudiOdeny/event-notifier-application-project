@@ -327,3 +327,36 @@ function displayFilteredResults(data) {
     });
   });
 }
+
+const ticketPurchaseContainer = document.querySelector(
+  "#ticket-purchase-container"
+);
+const ticketPurchaseForm = document.querySelector(".ticket-purchase-form");
+const fullNamePlaceHolder = document.querySelector(".fullname-placeholder");
+const selectEl = document.createElement("select");
+let userChoiceOfEvent;
+
+function selectEvent(data) {
+  data.forEach((data) => {
+    const optionEl = document.createElement("option");
+
+    optionEl.textContent = data.name;
+    optionEl.setAttribute("value", data.poster);
+    selectEl.appendChild(optionEl);
+    ticketPurchaseForm.insertBefore(selectEl, fullNamePlaceHolder);
+    const eventTypeBtn = document.querySelectorAll("option");
+
+    selectEl.addEventListener("change", function (e) {
+      userChoiceOfEvent = e.target.value;
+      if (userChoiceOfEvent === data.poster) {
+        console.log(e.target.value, data.poster);
+        const imageNew = document.querySelector(".event-image");
+        imageNew.src = e.target.value;
+      }
+
+      // const image = document.createElement("img");
+      // image.src = data.poster;
+      // ticketPurchaseContainer.replaceChild(image, imageNew);
+    });
+  });
+}
