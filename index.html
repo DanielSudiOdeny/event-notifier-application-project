@@ -150,5 +150,75 @@
         </div>
       </section>
     </div>
+
+    <section class="events">
+      <div class="search-event">
+        <input
+          type="text"
+          name="event"
+          id="event"
+          placeholder="What are you looking for?"
+          class="search-bar shadow"
+        />
+        <input
+          type="text"
+          name="location"
+          id="location"
+          placeholder="Location"
+          class="location-search-bar shadow"
+        />
+        <input type="submit" value="search" class="shadow search-btn" />
+
+        <input
+          type="submit"
+          value="Create Event"
+          class="create-event-btn shadow"
+        />
+      </div>
+
+      <section class="new-event-container">
+        <form action="" class="event-form shadow-lg hidden-1">
+          <input
+            type="text"
+            name="event-name"
+            id="event-name"
+            placeholder="Event Name"
+            class="event-name"
+          /><br />
+
+          <input
+            type="text"
+            name="event-location"
+            id="event-location"
+            placeholder="Event Location"
+            class="event-location"
+          /><br />
+
+          <input
+            type="url"
+            name="event-poster-image-url"
+            id="event-poster-url"
+            placeholder="Poster URL"
+            class="event-poster-url"
+          /><br />
+
+          <input
+            type="date"
+            name="event-date"
+            id="event-date"
+            placeholder="Event Date"
+            class="event-date"
+          /><br />
+          <input
+            type="time"
+            name="event-time"
+            id="event-time"
+            placeholder="Event Time"
+            class="event-time"
+          /><br />
+          <button class="create-event-btn">Create</button>
+        </form>
+      </section>
+    </section>
   </body>
 </html>
