@@ -7,6 +7,7 @@ const searchBtn = document.querySelector(".search-btn");
 const locationSearchBar = document.querySelector(".location-search-bar");
 const eventSearchBar = document.querySelector(".search-bar");
 const purchaseTicketbtn = document.querySelector(".purchase-ticket");
+const newEventsContainer = document.querySelector(".new-event-container");
 
 const createEventBtn = document.querySelector(
   ".search-event .create-event-btn"
@@ -60,7 +61,7 @@ submitEventFormBtn.addEventListener("click", function (e) {
   const eventPoster = document.querySelector(".event-poster-url");
   const date = document.querySelector(".event-date");
   const eventTime = document.querySelector(".event-time");
-  const newEventsContainer = document.querySelector(".new-event-container");
+
   let newEvent = document.createElement("div");
   newEvent.className = "card";
   newEvent.classList.add("shadow");
@@ -78,6 +79,7 @@ submitEventFormBtn.addEventListener("click", function (e) {
             <a href="#ticket-purchase-container" class="btn">Get Tickets</a>
           </div>
         </div>`;
+  //   newEventsContainer.innerHTML = "";
   newEventsContainer.appendChild(newEvent);
 
   //   Invoking this function will allow user to choose whether to add new event to featured events or not.
@@ -160,9 +162,16 @@ submitEventFormBtn.addEventListener("click", function (e) {
 
 // An Event listener that toggles whether to display the event form depending on whether it's clicked or not
 createEventBtn.addEventListener("click", function (e) {
-  eventForm.classList.toggle("hidden-1");
-  events.classList.toggle("hidden");
-  console.log(e);
+  if (events.classList.contains("hidden")) {
+    newEventsContainer.innerHTML = "";
+    newEventsContainer.appendChild(eventForm);
+    eventForm.classList.add("hidden-1");
+    events.classList.remove("hidden");
+  } else {
+    newEventsContainer.appendChild(eventForm);
+    eventForm.classList.remove("hidden-1");
+    events.classList.add("hidden");
+  }
 });
 let getEventsOnFilteredSearch = function (data) {
   let eventFromSearchResults = document.createElement("div");
@@ -170,7 +179,7 @@ let getEventsOnFilteredSearch = function (data) {
   eventFromSearchResults.classList.add("shadow");
   eventFromSearchResults.style =
     "width: 320px; height: 430px; margin-left: 30px";
-  const newEventsContainer = document.querySelector(".new-event-container");
+
   eventFromSearchResults.innerHTML = ` 
           <img class="card-img-top" src= ${data.poster} style="height: 180px;"alt="Event Poster" />
           <div class="card-body">
@@ -183,6 +192,8 @@ let getEventsOnFilteredSearch = function (data) {
             <a href="#ticket-purchase-container" class="btn">Get Tickets</a>
           </div>
         </div>`;
+
+  newEventsContainer.innerHTML = "";
   newEventsContainer.appendChild(eventFromSearchResults);
   events.classList.add("hidden");
 };
@@ -193,6 +204,7 @@ searchBtn.addEventListener("click", function (event) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+
       displaySearchResults(data);
     });
   // postEventDetailsToServer(data);
@@ -205,6 +217,7 @@ searchBtn.addEventListener("click", function (event) {
         eventSearchBar.value === data.name &&
         locationSearchBar.value === data.location
       ) {
+        newEventsContainer.innerHTML = "";
         getEventsOnFilteredSearch(data);
       }
     });
@@ -215,8 +228,6 @@ searchBtn.addEventListener("click", function (event) {
   fetch("http://localhost:3000/events")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      displaySearchResults(data);
       displayFilteredResults(data);
     });
   // postEventDetailsToServer(data);
