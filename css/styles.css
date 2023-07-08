@@ -203,3 +203,59 @@ select {
   background-color: #eaeaea;
   border-radius: 5px;
 }
+
+.event-form button {
+  width: 256px;
+  padding: 5px;
+  margin: 10px;
+  background-color: #6a5669;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 800;
+}
+#container-1 {
+  background-color: #bd4f6c;
+  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
+  padding: 10px;
+  height: 800px;
+}
+
+section .events-heading {
+  text-align: center;
+  color: #fff;
+  margin-top: 100px;
+  font-weight: 800;
+  font-size: 3.5rem;
+}
+
+#container-1 {
+  height: 1500px;
+}
+#container-1 .events-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 100px 0px;
+  height: 700px;
+  flex-wrap: wrap;
+}
+
+section .events-container .featured-events .card {
+  border-radius: 10px;
+  margin: 20px;
+  width: 380px;
+}
+
+.card .btn {
+  background-color: #6a5669;
+  color: #fff;
+  font-weight: 700;
+}
+
+.card .btn:hover {
+  background-color: #242024;
+  color: #fff;
+}
+
+.featured-events .card {
+  height: 450px;
+}
