@@ -137,7 +137,26 @@ submitEventFormBtn.addEventListener("click", function (e) {
             .then((response) => response.json())
             .then((data) => console.log(data));
         }
+        postEventDetailsToServer(data);
+
+        // Invoking this function will reset the event form after the new event is created
+        function resetEventForm() {
+          eventLocation.value = "";
+          eventName.value = "";
+          eventPoster.value = "";
+          eventTime.value = "";
+          date.value = "";
+          newEvent.classList.add("hidden-1");
+          eventForm.classList.add("hidden-1");
+          events.classList.remove("hidden");
+        }
+
+        resetEventForm();
+        setTimeout(() => {
+          alert("Kudos! Your new event has been added to the features events");
+        }, 3000);
       }
-    });
+    }, 2000);
   };
+  getUserInput();
 });
