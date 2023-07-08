@@ -211,3 +211,119 @@ searchBtn.addEventListener("click", function (event) {
     });
   }
 });
+
+searchBtn.addEventListener("click", function (event) {
+  fetch("http://localhost:3000/events")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      displaySearchResults(data);
+      displayFilteredResults(data);
+    });
+  // postEventDetailsToServer(data);
+
+  //   Invoking this function will display the specific event the user searches for if it's present in the server;
+  function displayFilteredResults(data) {
+    const filterLocation = document.querySelector(".location");
+    data.forEach((data) => {
+      //  An if else that only displays an event based on whether the data the user keys in and the data in the server matches
+      if (data.location.contains("Nairobi")) {
+        let eventFromSearchResults = document.createElement("div");
+        eventFromSearchResults.className = "card";
+        eventFromSearchResults.classList.add("shadow");
+        eventFromSearchResults.style =
+          "width: 320px; height: 400px; margin-left: 30px";
+        const newEventsContainer = document.querySelector(
+          ".new-event-container"
+        );
+        eventFromSearchResults.innerHTML = ` 
+          <img class="card-img-top" src= ${data.poster} style="height: 180px;"alt="Event Poster" />
+          <div class="card-body">
+            <h5 class="card-title">${data.name}</h5>
+            <p class="card-text" style="margin-bottom: 5px">${data.date}   
+
+            </p>
+            <p class="ml-5">${data.time}</p>
+             <p class="ml-5">${data.location}</p>
+            <a href="#ticket-purchase-container" class="btn">Get Tickets</a>
+          </div>
+        </div>`;
+        newEventsContainer.appendChild(eventFromSearchResults);
+        events.classList.add("hidden");
+      }
+    });
+  }
+});
+const selectEl2 = document.createElement("select");
+selectEl2.textContent = "Search Events by:";
+selectEl.className = "select1";
+
+function getFilteredSearch() {
+  fetch("http://localhost:3000/customizedSearch")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      displayFilteredResults(data);
+    });
+}
+
+function displayFilteredResults(data) {
+  data.forEach((data) => {
+    const searchEvent = document.querySelector(".search-event");
+    const optionEl2 = document.createElement("option");
+    optionEl2.textContent = data.category;
+    optionEl2.setAttribute("value", data.category);
+    selectEl2.appendChild(optionEl2);
+    searchEvent.appendChild(selectEl2);
+
+    selectEl2.addEventListener("change", function (e) {
+      if (e.target.value === "Location") {
+        if (e.target.value === data.category) {
+          locationSearchBar.setAttribute("placeholder", e.target.value);
+          const userLocation = prompt("Please enter your location");
+          fetch(`http://localhost:3000/events`)
+            .then((response) => response.json())
+            .then((data) => {
+              data.forEach((data) => {
+                if (userLocation === data.city) {
+                  getEventsOnFilteredSearch(data);
+                }
+              });
+            });
+        }
+      } else if (e.target.value === "Event Type") {
+        if (e.target.value === data.category) {
+          locationSearchBar.setAttribute("placeholder", e.target.value);
+          const userChosenEventType = prompt(
+            "What kind of events are you looking for?"
+          );
+          fetch(`http://localhost:3000/events`)
+            .then((response) => response.json())
+            .then((data) => {
+              data.forEach((data) => {
+                if (userChosenEventType === data.type) {
+                  getEventsOnFilteredSearch(data);
+                }
+              });
+            });
+        }
+      } else if (e.target.value === "Music Genre") {
+        if (e.target.value === data.category) {
+          locationSearchBar.setAttribute("placeholder", e.target.value);
+          const userChosenMusicGenre = prompt(
+            "What Genre of music do you enjoy listening to?"
+          );
+          fetch(`http://localhost:3000/events`)
+            .then((response) => response.json())
+            .then((data) => {
+              data.forEach((data) => {
+                if (userChosenMusicGenre === data.genre) {
+                  getEventsOnFilteredSearch(data);
+                }
+              });
+            });
+        }
+      }
+    });
+  });
+}
