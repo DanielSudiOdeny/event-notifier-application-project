@@ -189,3 +189,10 @@ let getEventsOnFilteredSearch = function (data) {
   newEventsContainer.appendChild(eventFromSearchResults);
   events.classList.add("hidden");
 };
+
+// A click event triggers a callback function that will fetch data from the server containing the specific event the user searches for
+searchBtn.addEventListener("click", function (event) {
+  fetch("http://localhost:3000/events")
+    .then((response) => response.json())
+    .then((data) => {});
+});
