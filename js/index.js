@@ -1,9 +1,24 @@
-// An event listener that only triggers the a callback function when the page is fully loaded.
+// Starting variables
+const signupBtn = document.querySelector(".signup-btn");
+const eventForm = document.querySelector(".event-form");
+const eventsContainer = document.querySelector(".events-container");
+const events = document.querySelector(".events");
+const searchBtn = document.querySelector(".search-btn");
+const locationSearchBar = document.querySelector(".location-search-bar");
+const eventSearchBar = document.querySelector(".search-bar");
+const purchaseTicketbtn = document.querySelector(".purchase-ticket");
+
+const createEventBtn = document.querySelector(
+  ".search-event .create-event-btn"
+);
+const submitEventFormBtn = document.querySelector(
+  ".event-form .create-event-btn"
+);
+
 document.addEventListener("DOMContentLoaded", function () {
   getEventsData();
   getFilteredSearch();
 });
-
 // Invoking this function will fetch events data from the server
 function getEventsData() {
   fetch(`http://localhost:3000/events`)
@@ -13,25 +28,6 @@ function getEventsData() {
       selectEvent(data);
     });
 }
-
-// Starting variables
-const signupBtn = document.querySelector(".signup-btn");
-const eventForm = document.querySelector(".event-form");
-const eventsContainer = document.querySelector(".events-container");
-const events = document.querySelector(".events");
-const searchBtn = document.querySelector(".search-btn");
-const selectEvents = document.querySelector("#events");
-const eventType = document.querySelector(".event-type");
-const musicGenre = document.querySelector(".music-genre");
-const locationSearchBar = document.querySelector(".location-search-bar");
-const eventSearchBar = document.querySelector(".search-bar");
-const purchaseTicketbtn = document.querySelector(".purchase-ticket");
-const createEventBtn = document.querySelector(
-  ".search-event .create-event-btn"
-);
-const submitEventFormBtn = document.querySelector(
-  ".event-form .create-event-btn"
-);
 
 // Invoking this function will create an event card and display the event data fetched from the server inside the card.
 function displayEventCard(data) {
@@ -137,7 +133,8 @@ submitEventFormBtn.addEventListener("click", function (e) {
             .then((response) => response.json())
             .then((data) => console.log(data));
         }
-        postEventDetailsToServer(data);
+
+        // postEventDetailsToServer(data);
 
         // Invoking this function will reset the event form after the new event is created
         function resetEventForm() {
@@ -195,8 +192,10 @@ searchBtn.addEventListener("click", function (event) {
   fetch("http://localhost:3000/events")
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       displaySearchResults(data);
     });
+  // postEventDetailsToServer(data);
 
   //   Invoking this function will display the specific event the user searches for if it's present in the server;
   function displaySearchResults(data) {
@@ -254,6 +253,67 @@ searchBtn.addEventListener("click", function (event) {
     });
   }
 });
+
+const ticketPurchaseContainer = document.querySelector(
+  "#ticket-purchase-container"
+);
+const ticketPurchaseForm = document.querySelector(".ticket-purchase-form");
+const fullNamePlaceHolder = document.querySelector(".fullname-placeholder");
+const selectEl = document.createElement("select");
+let userChoiceOfEvent;
+
+function selectEvent(data) {
+  data.forEach((data) => {
+    const optionEl = document.createElement("option");
+
+    optionEl.textContent = data.name;
+    optionEl.setAttribute("value", data.poster);
+    selectEl.appendChild(optionEl);
+    ticketPurchaseForm.insertBefore(selectEl, fullNamePlaceHolder);
+    const eventTypeBtn = document.querySelectorAll("option");
+
+    selectEl.addEventListener("change", function (e) {
+      userChoiceOfEvent = e.target.value;
+      if (userChoiceOfEvent === data.poster) {
+        console.log(e.target.value, data.poster);
+        const imageNew = document.querySelector(".event-image");
+        imageNew.src = e.target.value;
+      }
+    });
+  });
+}
+
+// Purchase ticket functionality
+purchaseTicketbtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const userFullname = document.querySelector(".user-fullname");
+  const userPhoneNumber = document.querySelector(".user-phone-number");
+
+  const ticketDetails = {
+    event: userChoiceOfEvent,
+    userFullName: userFullname.value,
+    UserPhoneNumber: userPhoneNumber.value,
+  };
+
+  function saveTicketPurchaseDetailsToServer() {
+    fetch("http://localhost:3000/ticket", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(ticketDetails),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
+
+  console.log(saveTicketPurchaseDetailsToServer());
+  alert(
+    "Congratulations! your slot is secured! We will contact you shortly concerning payment"
+  );
+});
+
 const selectEl2 = document.createElement("select");
 selectEl2.textContent = "Search Events by:";
 selectEl.className = "select1";
@@ -327,67 +387,3 @@ function displayFilteredResults(data) {
     });
   });
 }
-
-const ticketPurchaseContainer = document.querySelector(
-  "#ticket-purchase-container"
-);
-const ticketPurchaseForm = document.querySelector(".ticket-purchase-form");
-const fullNamePlaceHolder = document.querySelector(".fullname-placeholder");
-const selectEl = document.createElement("select");
-let userChoiceOfEvent;
-
-function selectEvent(data) {
-  data.forEach((data) => {
-    const optionEl = document.createElement("option");
-
-    optionEl.textContent = data.name;
-    optionEl.setAttribute("value", data.poster);
-    selectEl.appendChild(optionEl);
-    ticketPurchaseForm.insertBefore(selectEl, fullNamePlaceHolder);
-    const eventTypeBtn = document.querySelectorAll("option");
-
-    selectEl.addEventListener("change", function (e) {
-      userChoiceOfEvent = e.target.value;
-      if (userChoiceOfEvent === data.poster) {
-        console.log(e.target.value, data.poster);
-        const imageNew = document.querySelector(".event-image");
-        imageNew.src = e.target.value;
-      }
-
-      // const image = document.createElement("img");
-      // image.src = data.poster;
-      // ticketPurchaseContainer.replaceChild(image, imageNew);
-    });
-  });
-}
-
-// Purchase ticket functionality
-purchaseTicketbtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  const userFullname = document.querySelector(".user-fullname");
-  const userPhoneNumber = document.querySelector(".user-phone-number");
-
-  const ticketDetails = {
-    event: userChoiceOfEvent,
-    userFullName: userFullname.value,
-    UserPhoneNumber: userPhoneNumber.value,
-  };
-
-  function saveTicketPurchaseDetailsToServer() {
-    fetch("http://localhost:3000/ticket", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(ticketDetails),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  }
-
-  console.log(saveTicketPurchaseDetailsToServer());
-  alert(
-    "Congratulations! your slot is secured! We will contact you shortly concerning payment"
-  );
-});
