@@ -83,4 +83,36 @@ submitEventFormBtn.addEventListener("click", function (e) {
           </div>
         </div>`;
   newEventsContainer.appendChild(newEvent);
+
+  //   Invoking this function will allow user to choose whether to add new event to featured events or not.
+  const getUserInput = function () {
+    let userInput;
+    setTimeout(() => {
+      userInput = prompt(
+        "Do you want to add new event to featured events? reply with Y or N"
+      );
+      // An If else that determines whether the user has chosen to add a new event to the featured event or not
+      if (userInput === "Y") {
+        const newlyAddedFeaturedEvent = document.createElement("div");
+        newlyAddedFeaturedEvent.className = "card";
+        newlyAddedFeaturedEvent.style =
+          "height: 470px; width: 400px; margin: 20px;";
+
+        // The new card will be created inside the innerHTML and will be displayed in the featured events;
+        newlyAddedFeaturedEvent.innerHTML = `  
+          <img class="card-img-top" src= ${eventPoster.value} style="height: 180px;" alt="Event Poster" />
+          <div class="card-body">
+            <h5 class="card-title">${eventName.value}</h5>
+            <p class="card-text">${date.value}   
+
+            </p>
+            <p class="ml-5">${eventTime.value}</p>
+             <p class="ml-5">${eventLocation.value}</p>
+            <a href="#ticket-purchase-container" class="btn">Get Tickets</a>
+          </div>
+        </style=>`;
+        eventsContainer.appendChild(newlyAddedFeaturedEvent);
+      }
+    });
+  };
 });
