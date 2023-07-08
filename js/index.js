@@ -360,3 +360,34 @@ function selectEvent(data) {
     });
   });
 }
+
+// Purchase ticket functionality
+purchaseTicketbtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const userFullname = document.querySelector(".user-fullname");
+  const userPhoneNumber = document.querySelector(".user-phone-number");
+
+  const ticketDetails = {
+    event: userChoiceOfEvent,
+    userFullName: userFullname.value,
+    UserPhoneNumber: userPhoneNumber.value,
+  };
+
+  function saveTicketPurchaseDetailsToServer() {
+    fetch("http://localhost:3000/ticket", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(ticketDetails),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
+
+  console.log(saveTicketPurchaseDetailsToServer());
+  alert(
+    "Congratulations! your slot is secured! We will contact you shortly concerning payment"
+  );
+});
