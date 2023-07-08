@@ -160,3 +160,32 @@ submitEventFormBtn.addEventListener("click", function (e) {
   };
   getUserInput();
 });
+
+// An Event listener that toggles whether to display the event form depending on whether it's clicked or not
+createEventBtn.addEventListener("click", function (e) {
+  eventForm.classList.toggle("hidden-1");
+  events.classList.toggle("hidden");
+  console.log(e);
+});
+let getEventsOnFilteredSearch = function (data) {
+  let eventFromSearchResults = document.createElement("div");
+  eventFromSearchResults.className = "card";
+  eventFromSearchResults.classList.add("shadow");
+  eventFromSearchResults.style =
+    "width: 320px; height: 430px; margin-left: 30px";
+  const newEventsContainer = document.querySelector(".new-event-container");
+  eventFromSearchResults.innerHTML = ` 
+          <img class="card-img-top" src= ${data.poster} style="height: 180px;"alt="Event Poster" />
+          <div class="card-body">
+            <h5 class="card-title">${data.name}</h5>
+            <p class="card-text" style="margin-bottom: 5px">${data.date}   
+
+            </p>
+            <p class="ml-5">${data.time}</p>
+             <p class="ml-5">${data.location}</p>
+            <a href="#ticket-purchase-container" class="btn">Get Tickets</a>
+          </div>
+        </div>`;
+  newEventsContainer.appendChild(eventFromSearchResults);
+  events.classList.add("hidden");
+};
