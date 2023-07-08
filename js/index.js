@@ -32,3 +32,26 @@ const createEventBtn = document.querySelector(
 const submitEventFormBtn = document.querySelector(
   ".event-form .create-event-btn"
 );
+
+// Invoking this function will create an event card and display the event data fetched from the server inside the card.
+function displayEventCard(data) {
+  data.forEach((data) => {
+    const featuredEvents = document.createElement("div");
+    featuredEvents.className = "card";
+    featuredEvents.style = "width: 400px; height: 450px;";
+    // The HTML elements below will create the event card
+    featuredEvents.innerHTML = `
+          <img class="card-img-top" src= ${data.poster} style="height: 180px" alt="Event Poster" />
+          <div class="card-body">
+            <h5 class="card-title">${data.name}</h5>
+            <p class="card-text">${data.date}   
+
+            </p>
+            <p class="ml-5">${data.time}</p>
+             <p class="ml-5 location-details">${data.location}</p>
+            <a href="#ticket-purchase-container" class="btn">Get Tickets</a>
+          </div>
+        </div>`;
+    eventsContainer.appendChild(featuredEvents);
+  });
+}
