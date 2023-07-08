@@ -259,3 +259,74 @@ section .events-container .featured-events .card {
 .featured-events .card {
   height: 450px;
 }
+
+#ticket-purchase-container {
+  display: flex;
+  justify-content: space-around;
+  height: 910px;
+  padding: 150px;
+  background-color: #e0d4d4;
+}
+
+.ticket-purchase-form {
+  background-color: #fff;
+  width: 650px;
+  padding: 50px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.ticket-purchase-form select {
+  width: 300px;
+  margin: 0;
+}
+
+.ticket-purchase-form .age {
+  width: 80px;
+}
+
+.ticket-purchase-form input {
+  outline: none;
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.ticket-purchase-form .tickets-quantity {
+  width: 80px;
+}
+
+.mode-of-payment-container i {
+  margin-left: 10px;
+}
+
+.purchase-cancel-container .ticket-cancel-btn {
+  margin: 0 60px;
+  width: 150px;
+  padding: 10px;
+  background-color: #6a5669;
+  color: #fff;
+  font-weight: 800;
+  border-radius: 5px;
+  text-decoration: none;
+  width: 20px;
+}
+
+.purchase-cancel-container .ticket-cancel-btn:hover {
+  background-color: #2a2229;
+}
+
+.purchase-cancel-container input {
+  margin: 0 60px;
+  width: 150px;
+  padding: 10px;
+  background-color: #6a5669;
+  color: #fff;
+  font-weight: 800;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.purchase-cancel-container input:hover {
+  background-color: #2a2229;
+}
