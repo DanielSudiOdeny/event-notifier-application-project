@@ -112,6 +112,31 @@ submitEventFormBtn.addEventListener("click", function (e) {
           </div>
         </style=>`;
         eventsContainer.appendChild(newlyAddedFeaturedEvent);
+
+        // An object that stores data concerning the newly created event
+        const data = {
+          name: eventName.value,
+          description: "",
+          date: date.value,
+          time: eventTime.value,
+          location: eventLocation.value,
+          tickets_available: "",
+          poster: eventPoster,
+        };
+
+        // Invoking this function will use a post method to post the data concerning the newly created event to the server
+        function postEventDetailsToServer(data) {
+          fetch("http://localhost:3000/events", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+        }
       }
     });
   };
