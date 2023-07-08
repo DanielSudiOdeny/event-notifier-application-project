@@ -55,3 +55,32 @@ function displayEventCard(data) {
     eventsContainer.appendChild(featuredEvents);
   });
 }
+
+// An event listener that listens for clicks and triggers a callback function that will allow user to create an event
+submitEventFormBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const eventName = document.querySelector(".event-name");
+  const eventLocation = document.querySelector(".event-location");
+  const eventPoster = document.querySelector(".event-poster-url");
+  const date = document.querySelector(".event-date");
+  const eventTime = document.querySelector(".event-time");
+  const newEventsContainer = document.querySelector(".new-event-container");
+  let newEvent = document.createElement("div");
+  newEvent.className = "card";
+  newEvent.classList.add("shadow");
+  newEvent.style = "width: 320px; height: 400px; margin-left: 30px";
+
+  newEvent.innerHTML = ` 
+          <img class="card-img-top" src= ${eventPoster.value} style="height: 180px;"alt="Event Poster" />
+          <div class="card-body">
+            <h5 class="card-title">${eventName.value}</h5>
+            <p class="card-text" style="margin-bottom: 5px">${date.value}   
+
+            </p>
+            <p class="ml-5">${eventTime.value}</p>
+             <p class="ml-5">${eventLocation.value}</p>
+            <a href="#ticket-purchase-container" class="btn">Get Tickets</a>
+          </div>
+        </div>`;
+  newEventsContainer.appendChild(newEvent);
+});
