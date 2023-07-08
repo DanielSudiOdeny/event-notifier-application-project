@@ -1,0 +1,84 @@
+{
+  "logins": [
+    {
+    
+    }
+  ],
+  "bookings": [
+    {
+     
+      
+    }
+  ],
+
+  "customizedSearch": [
+    {
+"category": "Filter Search"
+    },
+  {
+    "category": "Location"
+  },
+  {
+    "category": "Event Type"
+  },
+  {
+    "category": "Music Genre"
+  }
+    
+  ],
+
+  "events": [
+    {
+      "id": "1",
+      "name": "Afro Jazz",
+      "price": "1500",
+      "type": "music",
+      "genre": "Jazz",
+      "description": "",
+      "date": "July 7, 2023",
+      "time": "04:00pm - 06:00pm",
+      "city": "Nairobi",
+      "location": "Nairobi National Museum",
+      "poster": "https://cdn.stayhappening.com/events3/banners/f4e3fd2cd481e4fb8cb696385ae95684ed9d95db242961dc76a11720dd68a453-rimg-w960-h960-gmir.jpg?v=1688295038"
+    },
+    {
+      "id": "2",
+      "name": "Nairobi Guitar Festival",
+      "price": "1500",
+      "type": "music",
+      "genre": "Rock",
+      "description": "",
+      "date": "Sunday July 16, 2023",
+      "time": "02:00 pm - 06:00 pm",
+      "city": "Nairobi",
+      "location": "Alliance Française, Loita / Monrovia Streets,Nairobi, Kenya",
+      "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqBWAnu6s5_jFwJy7xIaK5BUQxbOHxR0WR0jlyaxL08IU1T4_up5U3Q7KML9usG_bvNug&usqp=CAU"
+    },
+    {
+      "id": "3",
+      "name": "Summer Vibes",
+      "price": "1500",
+      "type": "party",
+      "description": "",
+      "date": "August 05, 2023",
+      "time": "05:00pm - 06:00pm",
+      "city": "Nairobi",
+      "location": "Winning Post Nairobi, Kenya",
+      "tickets_available": "",
+      "poster": "https://www.kenyamoja.com/sites/default/files/styles/width_500px/public/events/posters/snapinsta%20%2810%29.jpg?itok=tz0JiX8L"
+    },
+    {
+      "id": "4",
+      "name": "Wine & liquor Party",
+      "price": "1500",
+      "type": "party",
+      "description": "",
+      "date": "Sat Jul 08 2023",
+      "time": "03:00 pm",
+      "city": "Nairobi",
+      "location": "New Muthaiga Shopping Mall, Thigiri Ridge Road",
+      "poster": "https://cdn-az.allevents.in/events10/banners/59eb4adb7e6a0a33c2bfbe5f6751bb894ba34a6fa22a1cfa5022df83703a68b0-rimg-w960-h960-gmir.jpg?v=1688422056"
+    }
+  ]
+
+}
