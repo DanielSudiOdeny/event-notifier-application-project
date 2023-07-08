@@ -194,5 +194,20 @@ let getEventsOnFilteredSearch = function (data) {
 searchBtn.addEventListener("click", function (event) {
   fetch("http://localhost:3000/events")
     .then((response) => response.json())
-    .then((data) => {});
+    .then((data) => {
+      displaySearchResults(data);
+    });
+
+  //   Invoking this function will display the specific event the user searches for if it's present in the server;
+  function displaySearchResults(data) {
+    data.forEach((data) => {
+      //  An if else that only displays an event based on whether the data the user keys in and the data in the server matches
+      if (
+        eventSearchBar.value === data.name &&
+        locationSearchBar.value === data.location
+      ) {
+        getEventsOnFilteredSearch(data);
+      }
+    });
+  }
 });
