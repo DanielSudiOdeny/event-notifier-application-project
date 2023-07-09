@@ -22,9 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
   getFilteredSearch();
 });
 
-signupBtn.addEventListener("submit", function (e) {
+signupBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  welcomePage.scrollIntoView(true);
   const userName = document.querySelector(".username");
   const userEmail = document.querySelector(".user-email");
   const userPassword = document.querySelector(".user-password");
@@ -45,6 +44,7 @@ signupBtn.addEventListener("submit", function (e) {
   })
     .then((response) => response.json())
     .then((data) => console.log(data));
+  welcomePage.scrollIntoView(true);
 });
 // Invoking this function will fetch events data from the server
 function getEventsData() {
