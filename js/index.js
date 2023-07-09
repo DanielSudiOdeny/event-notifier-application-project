@@ -34,21 +34,26 @@ signupBtn.addEventListener("click", function (e) {
     userPassword: userPassword.value,
   };
 
-  fetch("http://localhost:3000/logins", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "applicaton/json",
-    },
-    body: JSON.stringify(data),
-  })
+  fetch(
+    "https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/logins",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "applicaton/json",
+      },
+      body: JSON.stringify(data),
+    }
+  )
     .then((response) => response.json())
     .then((data) => console.log(data));
   welcomePage.scrollIntoView(true);
 });
 // Invoking this function will fetch events data from the server
 function getEventsData() {
-  fetch(`http://localhost:3000/events`)
+  fetch(
+    `https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events`
+  )
     .then((response) => response.json())
     .then((data) => {
       displayEventCard(data);
@@ -150,14 +155,17 @@ submitEventFormBtn.addEventListener("click", function (e) {
 
         // Invoking this function will use a post method to post the data concerning the newly created event to the server
         function postEventDetailsToServer(data) {
-          fetch("http://localhost:3000/events", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify(data),
-          })
+          fetch(
+            "https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify(data),
+            }
+          )
             .then((response) => response.json())
             .then((data) => console.log(data));
         }
@@ -226,7 +234,9 @@ let getEventsOnFilteredSearch = function (data) {
 
 // A click event triggers a callback function that will fetch data from the server containing the specific event the user searches for
 searchBtn.addEventListener("click", function (event) {
-  fetch("http://localhost:3000/events")
+  fetch(
+    "https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events"
+  )
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -251,7 +261,9 @@ searchBtn.addEventListener("click", function (event) {
 });
 
 searchBtn.addEventListener("click", function (event) {
-  fetch("http://localhost:3000/events")
+  fetch(
+    "https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events"
+  )
     .then((response) => response.json())
     .then((data) => {
       displayFilteredResults(data);
@@ -333,14 +345,17 @@ purchaseTicketbtn.addEventListener("click", function (e) {
   };
 
   function saveTicketPurchaseDetailsToServer() {
-    fetch("http://localhost:3000/ticket", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(ticketDetails),
-    })
+    fetch(
+      "https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/bookings",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(ticketDetails),
+      }
+    )
       .then((response) => response.json())
       .then((data) => console.log(data));
   }
@@ -356,7 +371,9 @@ selectEl2.textContent = "Search Events by:";
 selectEl.className = "select1";
 
 function getFilteredSearch() {
-  fetch("http://localhost:3000/customizedSearch")
+  fetch(
+    "https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/customizedSearch"
+  )
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -378,7 +395,9 @@ function displayFilteredResults(data) {
         if (e.target.value === data.category) {
           locationSearchBar.setAttribute("placeholder", e.target.value);
           const userLocation = prompt("Please enter your location");
-          fetch(`http://localhost:3000/events`)
+          fetch(
+            `https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events`
+          )
             .then((response) => response.json())
             .then((data) => {
               data.forEach((data) => {
@@ -394,7 +413,9 @@ function displayFilteredResults(data) {
           const userChosenEventType = prompt(
             "What kind of events are you looking for?"
           );
-          fetch(`http://localhost:3000/events`)
+          fetch(
+            `https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events`
+          )
             .then((response) => response.json())
             .then((data) => {
               data.forEach((data) => {
@@ -410,7 +431,9 @@ function displayFilteredResults(data) {
           const userChosenMusicGenre = prompt(
             "What Genre of music do you enjoy listening to?"
           );
-          fetch(`http://localhost:3000/events`)
+          fetch(
+            `https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events`
+          )
             .then((response) => response.json())
             .then((data) => {
               data.forEach((data) => {
