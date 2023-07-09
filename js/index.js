@@ -1,4 +1,5 @@
 // Starting variables
+const welcomePage = document.querySelector("#content-fluid");
 const signupBtn = document.querySelector(".signup-btn");
 const eventForm = document.querySelector(".event-form");
 const eventsContainer = document.querySelector(".events-container");
@@ -19,6 +20,31 @@ const submitEventFormBtn = document.querySelector(
 document.addEventListener("DOMContentLoaded", function () {
   getEventsData();
   getFilteredSearch();
+});
+
+signupBtn.addEventListener("submit", function (e) {
+  e.preventDefault();
+  welcomePage.scrollIntoView(true);
+  const userName = document.querySelector(".username");
+  const userEmail = document.querySelector(".user-email");
+  const userPassword = document.querySelector(".user-password");
+
+  const data = {
+    userName: userName.value,
+    userEmail: userEmail.value,
+    userPassword: userPassword.value,
+  };
+
+  fetch("http://localhost:3000/logins", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "applicaton/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 });
 // Invoking this function will fetch events data from the server
 function getEventsData() {

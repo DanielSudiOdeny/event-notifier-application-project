@@ -1,6 +1,8 @@
 {
   "logins": [
-    {}
+    {
+      
+    }
   ],
   "bookings": [
     {}
@@ -71,6 +73,5 @@
       "location": "New Muthaiga Shopping Mall, Thigiri Ridge Road",
       "poster": "https://cdn-az.allevents.in/events10/banners/59eb4adb7e6a0a33c2bfbe5f6751bb894ba34a6fa22a1cfa5022df83703a68b0-rimg-w960-h960-gmir.jpg?v=1688422056"
     }
-   
   ]
 }

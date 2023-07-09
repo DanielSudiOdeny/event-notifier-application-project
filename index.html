@@ -19,6 +19,58 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="login-form-container">
+      <form action="" class="login-form shadow-lg">
+        <div class="signup-login-container">
+          <h1>Sign Up</h1>
+          <!-- <h1>Login</h1> -->
+        </div>
+        <label for="">Username</label>
+        <input
+          type="text"
+          name="First Name"
+          id="Username"
+          placeholder=" Your name"
+          class="username"
+          required
+        />
+        <label for="Email">Email</label>
+        <input
+          type="email"
+          name=""
+          id="Email"
+          placeholder="Your Email"
+          class="user-email"
+          required
+        />
+        <label for="">Password</label>
+        <input
+          type="password"
+          name=""
+          id="Password"
+          placeholder="Your Password"
+          class="user-password"
+          required
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+          required
+        />
+
+        <!-- <div class="terms-conditions-container">
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          value="remember me"
+          class="checkbox"
+          required
+        />
+        <label for="">Agree to terms and conditions</label><br />
+      </div> -->
+
+        <input type="submit" value="SignUp" class="signup-btn shadow-lg" />
+      </form>
+    </div>
     <div id="content-fluid">
       <nav class="navbar">
         <nav class="details">
@@ -72,7 +124,7 @@
                   </label>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <button type="button" class="btn btn-primary">Sign in</button>
             </form>
           </div>
 
