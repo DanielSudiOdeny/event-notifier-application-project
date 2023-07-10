@@ -170,7 +170,7 @@ submitEventFormBtn.addEventListener("click", function (e) {
             .then((data) => console.log(data));
         }
 
-        // postEventDetailsToServer(data);
+        postEventDetailsToServer(data);
 
         // Invoking this function will reset the event form after the new event is created
         function resetEventForm() {
@@ -333,7 +333,7 @@ function selectEvent(data) {
 }
 
 // Purchase ticket functionality
-purchaseTicketbtn.addEventListener("click", function (e) {
+purchaseTicketbtn.addEventListener("submit", function (e) {
   e.preventDefault();
   const userFullname = document.querySelector(".user-fullname");
   const userPhoneNumber = document.querySelector(".user-phone-number");
@@ -361,9 +361,16 @@ purchaseTicketbtn.addEventListener("click", function (e) {
   }
 
   console.log(saveTicketPurchaseDetailsToServer());
-  alert(
-    "Congratulations! your slot is secured! We will contact you shortly concerning payment"
-  );
+
+  if (!userFullname.value && !userPhoneNumber.value) {
+    alert(
+      "Sorry! We cannot process your ticket booking. Please enter your correct details."
+    );
+  } else {
+    alert(
+      "Congratulations! your slot is secured! We will contact you shortly concerning payment"
+    );
+  }
 });
 
 const selectEl2 = document.createElement("select");
@@ -394,7 +401,9 @@ function displayFilteredResults(data) {
       if (e.target.value === "Location") {
         if (e.target.value === data.category) {
           locationSearchBar.setAttribute("placeholder", e.target.value);
-          const userLocation = prompt("Please enter your location");
+          const userLocation = prompt(
+            "Please enter your location Example: Nairobi"
+          );
           fetch(
             `https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events`
           )
@@ -411,7 +420,7 @@ function displayFilteredResults(data) {
         if (e.target.value === data.category) {
           locationSearchBar.setAttribute("placeholder", e.target.value);
           const userChosenEventType = prompt(
-            "What kind of events are you looking for?"
+            "What kind of events are you looking for? Example.party"
           );
           fetch(
             `https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events`
@@ -429,7 +438,7 @@ function displayFilteredResults(data) {
         if (e.target.value === data.category) {
           locationSearchBar.setAttribute("placeholder", e.target.value);
           const userChosenMusicGenre = prompt(
-            "What Genre of music do you enjoy listening to?"
+            "What Genre of music do you enjoy listening to? Example. Jazz"
           );
           fetch(
             `https://my-json-server.typicode.com/DanielSudiOdeny/event-notifier-application-project/events`
